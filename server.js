@@ -1,51 +1,38 @@
 const express = require("express");
-const cors = require("cors");
+const app = express();
 const mercadopago = require("mercadopago");
+const cors = require("cors");
 
-// Configurar o Mercado Pago com sua chave
+// Configura Mercado Pago
 mercadopago.configure({
   access_token: "APP_USR-8829702683326757-122718-1c494ac162d7351e7a1761dc0b4f7bdb-230012383"
 });
 
-const app = express();
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 
-// Rota de teste
-app.get("/", (req, res) => {
-  res.send("Servidor do Mercado Pago está funcionando!");
-});
-
-// ✅ ROTA FUNCIONAL PARA CRIAR PREFERÊNCIA
+// Rota que cria a preferência de pagamento
 app.post("/create_preference", async (req, res) => {
   try {
     const preference = {
       items: [
         {
-          title: "Nome do Produto AQUI",
-          unit_price: 149.90,
+          title: "Nome do Produto",
+          unit_price: 149.9,
           quantity: 1
         }
-      ],
-      back_urls: {
-        success: "https://mercadopublicoonline.com/sucesso",
-        failure: "https://mercadopublicoonline.com/erro",
-        pending: "https://mercadopublicoonline.com/pendente"
-      },
-      auto_return: "approved"
+      ]
     };
 
     const response = await mercadopago.preferences.create(preference);
     res.json({ id: response.body.id });
-
   } catch (error) {
-    console.error("Erro ao criar preferência:", error);
+    console.error(error);
     res.status(500).json({ error: "Erro ao criar preferência" });
   }
 });
 
-// Porta usada no Render (ele define pelo ambiente)
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+// Inicializa o servidor
+app.listen(3000, () => {
+  console.log("Servidor rodando na porta 3000");
 });
