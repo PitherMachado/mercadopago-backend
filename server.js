@@ -32,7 +32,8 @@ app.post("/create_preference", async (req, res) => {
   }
 });
 
-// Inicializa o servidor
-app.listen(3000, () => {
-  console.log("Servidor rodando na porta 3000");
+// Correção aqui: usa a porta que o Render define
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
