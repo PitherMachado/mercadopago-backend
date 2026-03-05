@@ -5,7 +5,7 @@
 
 // Coloque seu número com DDI e DDD, só dígitos.
 // Ex.: "5548999999999"
-const WHATSAPP_NUMBER = "55XXXXXXXXXXX"; // <- TROQUE AQUI
+const WHATSAPP_NUMBER = "5548988640496"; // <- TROQUE AQUI
 
 function onlyDigits(s){ return (s||"").replace(/\D+/g, ""); }
 
