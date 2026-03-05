@@ -1,28 +1,15 @@
-
 // ===============================
-// FORM LEADS (LGPD-READY)
+// LEADS VIA WHATSAPP (100% GRATIS / GITHUB PAGES)
 // ===============================
 
-// 1) Coloque aqui um endpoint HTTPS que receba JSON.
-// Sugestões: Cloudflare Worker, um backend próprio, ou um form provider.
-// Ex.: https://seu-dominio.com/api/leads
-const WEBHOOK_URL = ""; // <- PREENCHA
+// 1) Coloque seu número com DDI e DDD, só dígitos.
+// Ex.: Brasil +55, Floripa 48: "5548999999999"
+const WHATSAPP_NUMBER = "55XXXXXXXXXXX"; // <- TROQUE AQUI
 
 function onlyDigits(s){ return (s||"").replace(/\D+/g, ""); }
 
-function maskCPF(v){
-  const d = onlyDigits(v).slice(0,11);
-  const p1 = d.slice(0,3), p2 = d.slice(3,6), p3 = d.slice(6,9), p4 = d.slice(9,11);
-  let out = p1;
-  if(p2) out += "."+p2;
-  if(p3) out += "."+p3;
-  if(p4) out += "-"+p4;
-  return out;
-}
-
 function maskPhone(v){
   const d = onlyDigits(v).slice(0,11);
-  // (DD) 9XXXX-XXXX
   const dd = d.slice(0,2);
   const p1 = d.slice(2,7);
   const p2 = d.slice(7,11);
@@ -46,75 +33,64 @@ function showAlert(type, msg){
 function setBusy(isBusy){
   const btn = document.getElementById("submitBtn");
   btn.disabled = isBusy;
-  btn.textContent = isBusy ? "Enviando..." : "Solicitar análise agora";
+  btn.textContent = isBusy ? "Abrindo WhatsApp..." : "Solicitar análise agora";
 }
 
-async function sendLead(payload){
-  if(!WEBHOOK_URL){
-    // fallback: não enviar nada sem endpoint (segurança)
-    throw new Error("Webhook não configurado. Preencha WEBHOOK_URL em assets/app.js.");
-  }
+function buildWhatsAppLink({nome, email, telefone, perfil}){
+  // Mensagem “copy-paste perfeita” pro seu atendimento
+  const msg =
+`Olá! Quero solicitar análise de empréstimo para beneficiário do INSS.
 
-  const res = await fetch(WEBHOOK_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
-  });
+Nome: ${nome}
+E-mail: ${email}
+Telefone: ${telefone}
+Beneficiário INSS: ${perfil}
 
-  if(!res.ok){
-    const txt = await res.text().catch(()=> "");
-    throw new Error(`Falha ao enviar (${res.status}). ${txt}`.trim());
-  }
+Quero simular e receber as condições.`;
 
-  return true;
+  const encoded = encodeURIComponent(msg);
+  // wa.me é leve e funciona bem no mobile
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`;
 }
 
 window.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("leadForm");
-  const cpf = document.getElementById("cpf");
   const phone = document.getElementById("telefone");
 
-  cpf.addEventListener("input", () => { cpf.value = maskCPF(cpf.value); });
   phone.addEventListener("input", () => { phone.value = maskPhone(phone.value); });
 
-  form.addEventListener("submit", async (ev) => {
+  form.addEventListener("submit", (ev) => {
     ev.preventDefault();
-    showAlert("", "");
     setBusy(true);
 
     const nome = document.getElementById("nome").value.trim();
     const email = document.getElementById("email").value.trim();
     const telefone = document.getElementById("telefone").value.trim();
-    const cpfVal = document.getElementById("cpf").value.trim();
+    const perfil = document.getElementById("perfil").value;
     const consent = document.getElementById("consent").checked;
 
-    // validações mínimas
     if(nome.length < 3) { setBusy(false); return showAlert("bad","Informe seu nome completo."); }
     if(!validEmail(email)) { setBusy(false); return showAlert("bad","Informe um e-mail válido."); }
     if(onlyDigits(telefone).length < 10) { setBusy(false); return showAlert("bad","Informe um telefone/WhatsApp válido."); }
-    if(onlyDigits(cpfVal).length !== 11) { setBusy(false); return showAlert("bad","CPF inválido (precisa ter 11 dígitos)."); }
-    if(!consent) { setBusy(false); return showAlert("bad","Você precisa autorizar o tratamento dos dados para análise."); }
+    if(!consent) { setBusy(false); return showAlert("bad","Você precisa autorizar o contato para análise."); }
 
-    const payload = {
-      canal: "landing-github",
-      produto: "emprestimo-inss",
-      nome,
-      email,
-      telefone: onlyDigits(telefone),
-      cpf: onlyDigits(cpfVal),
-      timestamp: new Date().toISOString(),
-      user_agent: navigator.userAgent
-    };
+    if(!/^\d{12,14}$/.test(WHATSAPP_NUMBER)){
+      setBusy(false);
+      return showAlert("bad","Número do WhatsApp não configurado. Ajuste WHATSAPP_NUMBER em assets/app.js.");
+    }
 
-    try{
-      await sendLead(payload);
-      showAlert("ok","Cadastro enviado. Em instantes um especialista entra em contato no seu WhatsApp.");
+    const link = buildWhatsAppLink({ nome, email, telefone, perfil });
+
+    // Feedback rápido
+    showAlert("ok","Perfeito. Vamos abrir seu WhatsApp com a mensagem pronta…");
+
+    // Abre WhatsApp (nova aba)
+    window.open(link, "_blank", "noopener,noreferrer");
+
+    // Opcional: limpa
+    setTimeout(() => {
       form.reset();
       setBusy(false);
-    }catch(err){
-      console.error(err);
-      setBusy(false);
-      showAlert("bad", String(err.message || err));
-    }
+    }, 600);
   });
 });
