@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>RADAR CONSIGNADO • Brasil (ao vivo)</title>
+  <meta name="description" content="Dashboard vivo com dados públicos do Banco Central (SGS) para consignado no Brasil." />
+  <meta name="theme-color" content="#070A14" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/app.css" />
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="inner">
+      <div class="brand">
+        <div class="badge" aria-hidden="true"></div>
+        <div>
+          <h1>RADAR CONSIGNADO</h1>
+          <p>Brasil • dados abertos • gráfico ao vivo</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a class="pill active" href="./index.html">Dashboard</a>
+        <a class="pill" href="./metodologia.html">Metodologia</a>
+        <a class="pill" href="./lgpd.html">LGPD & Ética</a>
+        <a class="pill" href="./sobre.html">Sobre</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <section class="hero">
+      <h2>O “pulso” do consignado — em tempo real</h2>
+      <p>
+        Um painel pronto para GitHub Pages que puxa séries oficiais do Banco Central (SGS) direto no navegador
+        e transforma em leitura operacional: estoque, concessões, variação mensal e anual.
+      </p>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <div class="head">
+          <div>
+            <h3>CONTROLES</h3>
+            <p class="sub">Selecione a série e o tamanho da janela histórica.</p>
+          </div>
+          <div class="row">
+            <select id="serie" class="sel" aria-label="Série">
+              <option value="saldo_total">Saldo (estoque) — Consignado total (SGS 20579)</option>
+              <option value="concessoes_inss">Concessões — Consignado INSS (SGS 20670)</option>
+            </select>
+
+            <select id="janela" class="sel" aria-label="Janela">
+              <option value="60">Últimos 60 pontos</option>
+              <option value="120" selected>Últimos 120 pontos</option>
+              <option value="180">Últimos 180 pontos</option>
+            </select>
+
+            <button id="reload" class="btn">Recarregar</button>
+          </div>
+        </div>
+
+        <div class="body">
+          <div class="mini" id="status">—</div>
+          <div class="mini" id="updated" style="margin-top:6px;">—</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="head">
+          <div>
+            <h3 id="kpiTitle">KPIs</h3>
+            <p class="sub" id="kpiSub">—</p>
+          </div>
+        </div>
+
+        <div class="body">
+          <div class="kpis">
+            <div class="kpi">
+              <div class="t">Último valor (aprox.)</div>
+              <div class="v" id="vLatest">—</div>
+              <div class="b">Formato: bilhões (R$)</div>
+              <div class="tag" id="tagLast">Fonte: BCB/SGS</div>
+            </div>
+
+            <div class="kpi">
+              <div class="t">Variação mensal</div>
+              <div class="v" id="vMoM">—</div>
+              <div class="b">Último vs mês anterior</div>
+              <div class="tag" id="tagMoM">MoM: —</div>
+            </div>
+
+            <div class="kpi">
+              <div class="t">Variação anual</div>
+              <div class="v" id="vYoY">—</div>
+              <div class="b">Último vs 12 meses atrás</div>
+              <div class="tag" id="tagYoY">YoY: —</div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div style="height:360px">
+            <canvas id="chart" aria-label="Gráfico da série" role="img"></canvas>
+          </div>
+        </div>
+      </article>
+
+      <article class="card half">
+        <div class="head">
+          <div>
+            <h3>LEITURA OPERACIONAL</h3>
+            <p class="sub">
+              Use esse bloco para “puxar” uma reunião: o painel já entrega direção (MoM/YoY) e histórico imediato.
+            </p>
+          </div>
+        </div>
+        <div class="body">
+          <ul style="margin:0; padding-left:18px; color:var(--muted); line-height:1.6">
+            <li><b>MoM</b> mostra aceleração ou freio na ponta (curto prazo).</li>
+            <li><b>YoY</b> mostra “tendência real” em 12 meses.</li>
+            <li>O dado é <b>público e oficial</b> (BCB/Depec via SGS) e é puxado ao vivo.</li>
+            <li>Isso é ideal para <b>contexto de mercado</b> — não para promessa de resultado.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="card half">
+        <div class="head">
+          <div>
+            <h3>ÚLTIMOS 18 PONTOS</h3>
+            <p class="sub">Tabela rápida para print/reporte.</p>
+          </div>
+        </div>
+        <div class="body" style="overflow:auto">
+          <table style="width:100%; border-collapse:collapse">
+            <thead>
+              <tr>
+                <th style="text-align:left; padding:10px 8px; color:var(--muted); font-size:12px; letter-spacing:.12em; text-transform:uppercase">Período</th>
+                <th style="text-align:right; padding:10px 8px; color:var(--muted); font-size:12px; letter-spacing:.12em; text-transform:uppercase">Valor (R$ bi aprox.)</th>
+              </tr>
+            </thead>
+            <tbody id="tbl"></tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+
+    <section class="foot">
+      <b>Nota importante:</b> este site é um “radar de mercado” baseado em dados abertos oficiais.
+      Ele não rastreia pessoas, não captura leads e não substitui análise jurídica/comercial.
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <div class="t" id="toastT">—</div>
+    <div class="d" id="toastD">—</div>
+  </div>
+
+  <!-- Chart.js (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script type="module" src="./assets/js/app.js"></script>
+</body>
+</html>
