@@ -1,113 +1,80 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>RADAR CONSIGNADO • Brasil (ao vivo)</title>
-  <meta name="description" content="Dashboard vivo com dados públicos do Banco Central (SGS) para consignado no Brasil." />
-  <meta name="theme-color" content="#070A14" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <title>Empréstimo para Beneficiários do INSS • Análise Rápida</title>
+  <meta name="description" content="Simule e solicite análise de empréstimo para beneficiários do INSS. Preencha seus dados e receba retorno no WhatsApp."/>
+  <meta name="theme-color" content="#070A14"/>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="./assets/css/app.css" />
+  <link rel="stylesheet" href="./assets/style.css"/>
 </head>
 
 <body>
-  <div class="topbar">
+  <header class="top">
     <div class="inner">
       <div class="brand">
-        <div class="badge" aria-hidden="true"></div>
+        <div class="logo" aria-hidden="true"></div>
         <div>
-          <h1>RADAR CONSIGNADO</h1>
-          <p>Brasil • dados abertos • gráfico ao vivo</p>
+          <h1>Análise de Crédito • INSS</h1>
+          <p>Resposta no WhatsApp • Processo objetivo</p>
         </div>
       </div>
 
-      <nav class="nav">
-        <a class="pill active" href="./index.html">Dashboard</a>
-        <a class="pill" href="./metodologia.html">Metodologia</a>
-        <a class="pill" href="./lgpd.html">LGPD & Ética</a>
-        <a class="pill" href="./sobre.html">Sobre</a>
+      <nav class="pills">
+        <a class="pill" href="./privacy.html">Privacidade</a>
+        <a class="pill" href="./termos.html">Termos</a>
       </nav>
     </div>
-  </div>
+  </header>
 
   <main class="wrap">
     <section class="hero">
-      <h2>O “pulso” do consignado — em tempo real</h2>
+      <h2>Solicite análise de empréstimo para beneficiários do INSS</h2>
       <p>
-        Um painel pronto para GitHub Pages que puxa séries oficiais do Banco Central (SGS) direto no navegador
-        e transforma em leitura operacional: estoque, concessões, variação mensal e anual.
+        Preencha o cadastro com seus dados para análise. Retorno rápido pelo WhatsApp.
+        <b>Crédito sujeito à análise</b>. Não cobramos taxa antecipada pela solicitação.
       </p>
     </section>
 
     <section class="grid">
-      <article class="card">
+
+      <article class="card half">
         <div class="head">
           <div>
-            <h3>CONTROLES</h3>
-            <p class="sub">Selecione a série e o tamanho da janela histórica.</p>
-          </div>
-          <div class="row">
-            <select id="serie" class="sel" aria-label="Série">
-              <option value="saldo_total">Saldo (estoque) — Consignado total (SGS 20579)</option>
-              <option value="concessoes_inss">Concessões — Consignado INSS (SGS 20670)</option>
-            </select>
-
-            <select id="janela" class="sel" aria-label="Janela">
-              <option value="60">Últimos 60 pontos</option>
-              <option value="120" selected>Últimos 120 pontos</option>
-              <option value="180">Últimos 180 pontos</option>
-            </select>
-
-            <button id="reload" class="btn">Recarregar</button>
+            <h3>Vantagens</h3>
+            <p class="sub">O que você ganha com esse processo</p>
           </div>
         </div>
-
         <div class="body">
-          <div class="mini" id="status">—</div>
-          <div class="mini" id="updated" style="margin-top:6px;">—</div>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="head">
-          <div>
-            <h3 id="kpiTitle">KPIs</h3>
-            <p class="sub" id="kpiSub">—</p>
-          </div>
-        </div>
-
-        <div class="body">
-          <div class="kpis">
-            <div class="kpi">
-              <div class="t">Último valor (aprox.)</div>
-              <div class="v" id="vLatest">—</div>
-              <div class="b">Formato: bilhões (R$)</div>
-              <div class="tag" id="tagLast">Fonte: BCB/SGS</div>
-            </div>
-
-            <div class="kpi">
-              <div class="t">Variação mensal</div>
-              <div class="v" id="vMoM">—</div>
-              <div class="b">Último vs mês anterior</div>
-              <div class="tag" id="tagMoM">MoM: —</div>
-            </div>
-
-            <div class="kpi">
-              <div class="t">Variação anual</div>
-              <div class="v" id="vYoY">—</div>
-              <div class="b">Último vs 12 meses atrás</div>
-              <div class="tag" id="tagYoY">YoY: —</div>
-            </div>
-          </div>
+          <ul class="list">
+            <li><b>Atendimento objetivo</b> e retorno no WhatsApp.</li>
+            <li><b>Análise inicial</b> com base nas informações enviadas.</li>
+            <li><b>Transparência</b>: crédito sujeito a aprovação e regras da instituição.</li>
+            <li><b>LGPD</b>: você controla seus dados e pode solicitar exclusão.</li>
+          </ul>
 
           <div class="hr"></div>
 
-          <div style="height:360px">
-            <canvas id="chart" aria-label="Gráfico da série" role="img"></canvas>
+          <div class="kpis">
+            <div class="kpi">
+              <div class="t">Tempo médio de retorno</div>
+              <div class="v">Rápido</div>
+              <div class="b">depende da fila e validações</div>
+            </div>
+            <div class="kpi">
+              <div class="t">Canal</div>
+              <div class="v">WhatsApp</div>
+              <div class="b">confirmação por mensagem</div>
+            </div>
+            <div class="kpi">
+              <div class="t">Segurança</div>
+              <div class="v">LGPD</div>
+              <div class="b">tratamento com finalidade</div>
+            </div>
           </div>
         </div>
       </article>
@@ -115,56 +82,101 @@
       <article class="card half">
         <div class="head">
           <div>
-            <h3>LEITURA OPERACIONAL</h3>
-            <p class="sub">
-              Use esse bloco para “puxar” uma reunião: o painel já entrega direção (MoM/YoY) e histórico imediato.
+            <h3>Cadastro para análise</h3>
+            <p class="sub">Informe dados reais para evitar reprovação</p>
+          </div>
+        </div>
+
+        <div class="body">
+          <form id="leadForm" autocomplete="on">
+            <div class="row">
+              <div class="field" style="flex:1 1 100%">
+                <label for="nome">Nome completo</label>
+                <input id="nome" name="nome" placeholder="Ex.: Maria Aparecida da Silva" required />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="email">E-mail</label>
+                <input id="email" name="email" type="email" placeholder="seuemail@email.com" required />
+              </div>
+              <div class="field">
+                <label for="telefone">Telefone / WhatsApp</label>
+                <input id="telefone" name="telefone" inputmode="tel" placeholder="(11) 9XXXX-XXXX" required />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="cpf">CPF</label>
+                <input id="cpf" name="cpf" inputmode="numeric" placeholder="000.000.000-00" required />
+              </div>
+              <div class="field">
+                <label for="perfil">Você é beneficiário do INSS?</label>
+                <select id="perfil" name="perfil">
+                  <option value="sim" selected>Sim</option>
+                  <option value="nao">Não</option>
+                  <option value="nao_sei">Não tenho certeza</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="row" style="align-items:flex-start">
+              <div class="field" style="flex:1 1 100%">
+                <label style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
+                  <input id="consent" type="checkbox" style="width:auto; margin-top:3px" required>
+                  <span class="note">
+                    Autorizo o tratamento dos meus dados para <b>análise de crédito</b> e contato sobre esta solicitação,
+                    conforme a <a href="./privacy.html">Política de Privacidade</a>. Posso solicitar exclusão a qualquer momento.
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <button class="btn primary" id="submitBtn" type="submit" style="width:100%; margin-top:10px;">
+              Solicitar análise agora
+            </button>
+
+            <div id="alert" class="alert" aria-live="polite"></div>
+
+            <p class="note" style="margin:12px 0 0;">
+              <b>Aviso:</b> Crédito sujeito à análise. Não solicitamos pagamento antecipado para “liberação”.
             </p>
+          </form>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="head">
+          <div>
+            <h3>Perguntas rápidas</h3>
+            <p class="sub">Reduz objeção e aumenta conversão</p>
           </div>
         </div>
         <div class="body">
-          <ul style="margin:0; padding-left:18px; color:var(--muted); line-height:1.6">
-            <li><b>MoM</b> mostra aceleração ou freio na ponta (curto prazo).</li>
-            <li><b>YoY</b> mostra “tendência real” em 12 meses.</li>
-            <li>O dado é <b>público e oficial</b> (BCB/Depec via SGS) e é puxado ao vivo.</li>
-            <li>Isso é ideal para <b>contexto de mercado</b> — não para promessa de resultado.</li>
+          <ul class="list">
+            <li><b>Isso é o INSS?</b> Não. Somos um canal de solicitação e atendimento. Não representamos órgão público.</li>
+            <li><b>Vai cair na hora?</b> Depende da análise e regras da instituição. Você recebe retorno pelo WhatsApp.</li>
+            <li><b>Por que pedir CPF?</b> Para evitar cadastro duplicado e iniciar validações de análise (com seu consentimento).</li>
+            <li><b>Posso excluir meus dados?</b> Sim. Veja <a href="./privacy.html">Privacidade</a>.</li>
           </ul>
         </div>
       </article>
 
-      <article class="card half">
-        <div class="head">
-          <div>
-            <h3>ÚLTIMOS 18 PONTOS</h3>
-            <p class="sub">Tabela rápida para print/reporte.</p>
-          </div>
-        </div>
-        <div class="body" style="overflow:auto">
-          <table style="width:100%; border-collapse:collapse">
-            <thead>
-              <tr>
-                <th style="text-align:left; padding:10px 8px; color:var(--muted); font-size:12px; letter-spacing:.12em; text-transform:uppercase">Período</th>
-                <th style="text-align:right; padding:10px 8px; color:var(--muted); font-size:12px; letter-spacing:.12em; text-transform:uppercase">Valor (R$ bi aprox.)</th>
-              </tr>
-            </thead>
-            <tbody id="tbl"></tbody>
-          </table>
-        </div>
-      </article>
     </section>
 
-    <section class="foot">
-      <b>Nota importante:</b> este site é um “radar de mercado” baseado em dados abertos oficiais.
-      Ele não rastreia pessoas, não captura leads e não substitui análise jurídica/comercial.
+    <section class="footer">
+      <b>Transparência:</b> Este site não é afiliado ao INSS nem a órgão público. Crédito sujeito à análise e disponibilidade.
+      Não solicitamos pagamento antecipado para liberação de valores.
+      <div style="margin-top:8px;">
+        <a href="./privacy.html">Política de Privacidade</a> • <a href="./termos.html">Termos de Uso</a>
+      </div>
     </section>
   </main>
 
-  <div class="toast" id="toast" role="status" aria-live="polite">
-    <div class="t" id="toastT">—</div>
-    <div class="d" id="toastD">—</div>
-  </div>
-
-  <!-- Chart.js (CDN) -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
-  <script type="module" src="./assets/js/app.js"></script>
+  <script src="./assets/app.js"></script>
 </body>
 </html>
