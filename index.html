@@ -4,179 +4,274 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
   <title>Empréstimo para Beneficiários do INSS • Análise Rápida</title>
-  <meta name="description" content="Simule e solicite análise de empréstimo para beneficiários do INSS. Preencha seus dados e receba retorno no WhatsApp."/>
+  <meta name="description" content="Solicite análise de empréstimo para beneficiários do INSS. Preencha seus dados e receba retorno pelo WhatsApp."/>
   <meta name="theme-color" content="#070A14"/>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="./assets/style.css"/>
 </head>
 
 <body>
-  <header class="top">
-    <div class="inner">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <h1>Análise de Crédito • INSS</h1>
-          <p>Resposta no WhatsApp • Processo objetivo</p>
-        </div>
-      </div>
 
-      <nav class="pills">
-        <a class="pill" href="./privacy.html">Privacidade</a>
-        <a class="pill" href="./termos.html">Termos</a>
-      </nav>
+<header class="top">
+  <div class="inner">
+
+    <div class="brand">
+      <div class="logo"></div>
+      <div>
+        <h1>Análise de Crédito • INSS</h1>
+        <p>Retorno rápido pelo WhatsApp</p>
+      </div>
     </div>
-  </header>
 
-  <main class="wrap">
-    <section class="hero">
-      <h2>Solicite análise de empréstimo para beneficiários do INSS</h2>
-      <p>
-        Preencha o cadastro com seus dados para análise. Retorno rápido pelo WhatsApp.
-        <b>Crédito sujeito à análise</b>. Não cobramos taxa antecipada pela solicitação.
-      </p>
-    </section>
+    <nav class="pills">
+      <a class="pill" href="./privacy.html">Privacidade</a>
+      <a class="pill" href="./termos.html">Termos</a>
+    </nav>
 
-    <section class="grid">
+  </div>
+</header>
 
-      <article class="card half">
-        <div class="head">
-          <div>
-            <h3>Vantagens</h3>
-            <p class="sub">O que você ganha com esse processo</p>
-          </div>
-        </div>
-        <div class="body">
-          <ul class="list">
-            <li><b>Atendimento objetivo</b> e retorno no WhatsApp.</li>
-            <li><b>Análise inicial</b> com base nas informações enviadas.</li>
-            <li><b>Transparência</b>: crédito sujeito a aprovação e regras da instituição.</li>
-            <li><b>LGPD</b>: você controla seus dados e pode solicitar exclusão.</li>
-          </ul>
 
-          <div class="hr"></div>
+<main class="wrap">
 
-          <div class="kpis">
-            <div class="kpi">
-              <div class="t">Tempo médio de retorno</div>
-              <div class="v">Rápido</div>
-              <div class="b">depende da fila e validações</div>
-            </div>
-            <div class="kpi">
-              <div class="t">Canal</div>
-              <div class="v">WhatsApp</div>
-              <div class="b">confirmação por mensagem</div>
-            </div>
-            <div class="kpi">
-              <div class="t">Segurança</div>
-              <div class="v">LGPD</div>
-              <div class="b">tratamento com finalidade</div>
-            </div>
-          </div>
-        </div>
-      </article>
+<section class="hero">
 
-      <article class="card half">
-        <div class="head">
-          <div>
-            <h3>Cadastro para análise</h3>
-            <p class="sub">Informe dados reais para evitar reprovação</p>
-          </div>
-        </div>
+<h2>Solicite análise de empréstimo para beneficiários do INSS</h2>
 
-        <div class="body">
-          <form id="leadForm" autocomplete="on">
-            <div class="row">
-              <div class="field" style="flex:1 1 100%">
-                <label for="nome">Nome completo</label>
-                <input id="nome" name="nome" placeholder="Ex.: Maria Aparecida da Silva" required />
-              </div>
-            </div>
+<p>
+Preencha o cadastro para análise de crédito.  
+Um especialista irá retornar pelo WhatsApp com as condições disponíveis.
+</p>
 
-            <div class="row">
-              <div class="field">
-                <label for="email">E-mail</label>
-                <input id="email" name="email" type="email" placeholder="seuemail@email.com" required />
-              </div>
-              <div class="field">
-                <label for="telefone">Telefone / WhatsApp</label>
-                <input id="telefone" name="telefone" inputmode="tel" placeholder="(11) 9XXXX-XXXX" required />
-              </div>
-            </div>
+</section>
 
-            <div class="row">
-              <div class="field">
-                <label for="cpf">CPF</label>
-                <input id="cpf" name="cpf" inputmode="numeric" placeholder="000.000.000-00" required />
-              </div>
-              <div class="field">
-                <label for="perfil">Você é beneficiário do INSS?</label>
-                <select id="perfil" name="perfil">
-                  <option value="sim" selected>Sim</option>
-                  <option value="nao">Não</option>
-                  <option value="nao_sei">Não tenho certeza</option>
-                </select>
-              </div>
-            </div>
 
-            <div class="hr"></div>
 
-            <div class="row" style="align-items:flex-start">
-              <div class="field" style="flex:1 1 100%">
-                <label style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
-                  <input id="consent" type="checkbox" style="width:auto; margin-top:3px" required>
-                  <span class="note">
-                    Autorizo o tratamento dos meus dados para <b>análise de crédito</b> e contato sobre esta solicitação,
-                    conforme a <a href="./privacy.html">Política de Privacidade</a>. Posso solicitar exclusão a qualquer momento.
-                  </span>
-                </label>
-              </div>
-            </div>
+<section class="grid">
 
-            <button class="btn primary" id="submitBtn" type="submit" style="width:100%; margin-top:10px;">
-              Solicitar análise agora
-            </button>
+<!-- BENEFÍCIOS -->
 
-            <div id="alert" class="alert" aria-live="polite"></div>
+<article class="card half">
 
-            <p class="note" style="margin:12px 0 0;">
-              <b>Aviso:</b> Crédito sujeito à análise. Não solicitamos pagamento antecipado para “liberação”.
-            </p>
-          </form>
-        </div>
-      </article>
+<div class="head">
+<div>
+<h3>Vantagens</h3>
+<p class="sub">Processo simples e rápido</p>
+</div>
+</div>
 
-      <article class="card">
-        <div class="head">
-          <div>
-            <h3>Perguntas rápidas</h3>
-            <p class="sub">Reduz objeção e aumenta conversão</p>
-          </div>
-        </div>
-        <div class="body">
-          <ul class="list">
-            <li><b>Isso é o INSS?</b> Não. Somos um canal de solicitação e atendimento. Não representamos órgão público.</li>
-            <li><b>Vai cair na hora?</b> Depende da análise e regras da instituição. Você recebe retorno pelo WhatsApp.</li>
-            <li><b>Por que pedir CPF?</b> Para evitar cadastro duplicado e iniciar validações de análise (com seu consentimento).</li>
-            <li><b>Posso excluir meus dados?</b> Sim. Veja <a href="./privacy.html">Privacidade</a>.</li>
-          </ul>
-        </div>
-      </article>
+<div class="body">
 
-    </section>
+<ul class="list">
 
-    <section class="footer">
-      <b>Transparência:</b> Este site não é afiliado ao INSS nem a órgão público. Crédito sujeito à análise e disponibilidade.
-      Não solicitamos pagamento antecipado para liberação de valores.
-      <div style="margin-top:8px;">
-        <a href="./privacy.html">Política de Privacidade</a> • <a href="./termos.html">Termos de Uso</a>
-      </div>
-    </section>
-  </main>
+<li><b>Análise inicial rápida</b></li>
 
-  <script src="./assets/app.js"></script>
+<li><b>Contato direto pelo WhatsApp</b></li>
+
+<li><b>Sem pagamento antecipado</b></li>
+
+<li><b>Processo transparente</b></li>
+
+</ul>
+
+<div class="hr"></div>
+
+<div class="kpis">
+
+<div class="kpi">
+<div class="t">Resposta média</div>
+<div class="v">Rápida</div>
+<div class="b">via WhatsApp</div>
+</div>
+
+<div class="kpi">
+<div class="t">Processo</div>
+<div class="v">Seguro</div>
+<div class="b">dados protegidos</div>
+</div>
+
+<div class="kpi">
+<div class="t">Cadastro</div>
+<div class="v">Simples</div>
+<div class="b">leva menos de 1 minuto</div>
+</div>
+
+</div>
+
+</div>
+
+</article>
+
+
+
+<!-- FORMULÁRIO -->
+
+<article class="card half">
+
+<div class="head">
+<div>
+<h3>Solicitar análise</h3>
+<p class="sub">Preencha os dados abaixo</p>
+</div>
+</div>
+
+<div class="body">
+
+<form id="leadForm" autocomplete="on">
+
+
+<div class="row">
+
+<div class="field" style="flex:1 1 100%">
+<label>Nome completo</label>
+<input id="nome" placeholder="Ex.: Maria Aparecida da Silva" required>
+</div>
+
+</div>
+
+
+<div class="row">
+
+<div class="field">
+<label>Email</label>
+<input id="email" type="email" placeholder="seuemail@email.com" required>
+</div>
+
+<div class="field">
+<label>Telefone / WhatsApp</label>
+<input id="telefone" placeholder="(11) 9XXXX-XXXX" required>
+</div>
+
+</div>
+
+
+<div class="row">
+
+<div class="field">
+<label>Você é beneficiário do INSS?</label>
+
+<select id="perfil">
+<option value="Sim">Sim</option>
+<option value="Não">Não</option>
+<option value="Não tenho certeza">Não tenho certeza</option>
+</select>
+
+</div>
+
+</div>
+
+
+
+<div class="hr"></div>
+
+
+<div class="row">
+
+<div class="field" style="flex:1 1 100%">
+
+<label style="display:flex;gap:10px;cursor:pointer">
+
+<input id="consent" type="checkbox" required>
+
+<span class="note">
+Autorizo o contato para análise de crédito conforme a
+<a href="./privacy.html">política de privacidade</a>.
+</span>
+
+</label>
+
+</div>
+
+</div>
+
+
+<button class="btn primary" id="submitBtn" style="width:100%;margin-top:10px">
+
+Solicitar análise agora
+
+</button>
+
+
+<div id="alert" class="alert"></div>
+
+
+<p class="note" style="margin-top:10px">
+
+Crédito sujeito à análise.  
+Não solicitamos pagamento antecipado para liberação.
+
+</p>
+
+
+</form>
+
+</div>
+
+</article>
+
+
+
+
+<!-- FAQ -->
+
+<article class="card">
+
+<div class="head">
+<div>
+<h3>Perguntas frequentes</h3>
+<p class="sub">Informações importantes</p>
+</div>
+</div>
+
+<div class="body">
+
+<ul class="list">
+
+<li><b>Isso é o INSS?</b> Não. Este site é apenas um canal de solicitação de análise.</li>
+
+<li><b>O dinheiro cai na hora?</b> Depende da análise e aprovação da instituição financeira.</li>
+
+<li><b>Existe taxa antecipada?</b> Não. Não cobramos taxa antecipada.</li>
+
+<li><b>Como recebo resposta?</b> Um especialista entra em contato pelo WhatsApp.</li>
+
+</ul>
+
+</div>
+
+</article>
+
+
+
+</section>
+
+
+<section class="footer">
+
+<b>Aviso:</b>  
+Este site não possui vínculo com o INSS ou qualquer órgão público.
+
+<br><br>
+
+Crédito sujeito à análise e aprovação da instituição financeira.
+
+<br><br>
+
+<a href="./privacy.html">Política de Privacidade</a> •
+<a href="./termos.html">Termos de Uso</a>
+
+</section>
+
+
+</main>
+
+
+<script src="./assets/app.js"></script>
+
 </body>
 </html>
