@@ -58,7 +58,7 @@
         <a class="btn primary" href="#cadastro">Quero solicitar análise agora</a>
         <div class="mini">
           <span class="dot"></span>
-          <span id="socialProof">Hoje: 0 solicitações iniciadas</span>
+          <span id="socialProof">Hoje: 0 solicitações iniciadas neste dispositivo</span>
         </div>
       </div>
 
@@ -89,55 +89,71 @@
       </div>
     </div>
 
+    <!-- SIMULADOR PRO (DUAS MODALIDADES + MODO DUPLO) -->
     <div class="hero-right">
       <article class="card pro-card">
         <div class="head">
           <div>
             <h3>Simulador rápido</h3>
-            <p class="sub">Estimativa simples (não é aprovação)</p>
+            <p class="sub">Estimativa matemática (não é aprovação)</p>
           </div>
         </div>
 
         <div class="body">
           <div class="sim">
-            <div class="field">
-              <label for="simValor">Valor desejado (R$)</label>
-              <input id="simValor" inputmode="numeric" placeholder="Ex.: 8000" />
+
+            <div class="row">
+              <div class="field" style="flex:1 1 100%">
+                <label for="simModalidade">Modalidade</label>
+                <select id="simModalidade">
+                  <option value="consignado" selected>Crédito Consignado (INSS)</option>
+                  <option value="pessoal">Crédito Pessoal (INSS)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field" style="flex:1 1 100%">
+                <label>Como você quer simular?</label>
+                <div class="row" style="gap:10px">
+                  <button class="btn" id="simModoValor" type="button" style="flex:1 1 200px">Pelo valor liberado</button>
+                  <button class="btn" id="simModoParcela" type="button" style="flex:1 1 200px">Pela parcela</button>
+                </div>
+                <div class="note" id="simHint" style="margin-top:8px;"></div>
+              </div>
+            </div>
+
+            <div class="row" id="simBoxValor">
+              <div class="field" style="flex:1 1 100%">
+                <label for="simValor">Valor liberado (R$)</label>
+                <input id="simValor" inputmode="numeric" placeholder="Ex.: 8000" />
+              </div>
+            </div>
+
+            <div class="row" id="simBoxParcela" style="display:none">
+              <div class="field" style="flex:1 1 100%">
+                <label for="simParcela">Valor da parcela (R$)</label>
+                <input id="simParcela" inputmode="numeric" placeholder="Ex.: 486,30" />
+              </div>
             </div>
 
             <div class="row">
               <div class="field">
-                <label for="simPrazo">Prazo (meses)</label>
-                <select id="simPrazo">
-                  <option value="24">24</option>
-                  <option value="36" selected>36</option>
-                  <option value="48">48</option>
-                  <option value="60">60</option>
-                  <option value="72">72</option>
-                  <option value="84">84</option>
-                </select>
-              </div>
-
-              <div class="field">
-                <label for="simTaxa">Taxa estimada (% a.m.)</label>
-                <select id="simTaxa">
-                  <option value="1.6">1,6%</option>
-                  <option value="1.8" selected>1,8%</option>
-                  <option value="2.0">2,0%</option>
-                  <option value="2.2">2,2%</option>
-                </select>
+                <label for="simPrazo">Prazo (parcelas)</label>
+                <select id="simPrazo"></select>
               </div>
             </div>
 
-            <button class="btn" id="btnSimular" type="button">Calcular parcela estimada</button>
+            <button class="btn" id="btnSimular" type="button">Calcular agora</button>
 
             <div class="sim-result" id="simResult" aria-live="polite">
-              Informe um valor e clique em calcular.
+              Selecione modalidade e faça sua simulação.
             </div>
 
             <p class="note" style="margin:10px 0 0;">
-              <b>Aviso:</b> isso é apenas uma estimativa matemática. Condições reais dependem de análise e regras da instituição.
+              <b>Aviso:</b> isto é uma estimativa. Condições reais dependem de análise e regras da instituição.
             </p>
+
           </div>
         </div>
       </article>
@@ -148,7 +164,6 @@
   <!-- GRID -->
   <section class="grid" id="cadastro">
 
-    <!-- BENEFÍCIOS -->
     <article class="card half">
       <div class="head">
         <div>
@@ -159,7 +174,7 @@
 
       <div class="body">
         <ul class="list">
-          <li><b>Sem CPF</b> nesta etapa (mais segurança e menos travas).</li>
+          <li><b>Sem CPF</b> nesta etapa.</li>
           <li><b>Mensagem pronta</b> no WhatsApp com seus dados.</li>
           <li><b>Retorno objetivo</b> com condições disponíveis.</li>
           <li><b>Transparência</b>: crédito sujeito à análise.</li>
@@ -190,7 +205,6 @@
     </article>
 
 
-    <!-- FORMULÁRIO -->
     <article class="card half">
       <div class="head">
         <div>
@@ -260,44 +274,6 @@
     </article>
 
 
-    <!-- PROVA SOCIAL -->
-    <article class="card">
-      <div class="head">
-        <div>
-          <h3>Quem já iniciou a solicitação</h3>
-          <p class="sub">Prova social (exemplos de atendimento)</p>
-        </div>
-      </div>
-
-      <div class="body">
-        <div class="testimonials">
-          <div class="tcard">
-            <div class="tstars">★★★★★</div>
-            <div class="ttext">“Bem rápido. Preenchi e já abriu o WhatsApp com tudo pronto.”</div>
-            <div class="tmeta">— Cliente • SP</div>
-          </div>
-
-          <div class="tcard">
-            <div class="tstars">★★★★★</div>
-            <div class="ttext">“Gostei de não pedir CPF. O atendimento explicou tudo certinho.”</div>
-            <div class="tmeta">— Cliente • PR</div>
-          </div>
-
-          <div class="tcard">
-            <div class="tstars">★★★★☆</div>
-            <div class="ttext">“Processo simples. Já deixei meus dados e segui no WhatsApp.”</div>
-            <div class="tmeta">— Cliente • RJ</div>
-          </div>
-        </div>
-
-        <p class="note" style="margin:12px 0 0;">
-          <b>Transparência:</b> depoimentos exemplificativos para ilustrar experiência do fluxo (não garantem resultado).
-        </p>
-      </div>
-    </article>
-
-
-    <!-- FAQ (ACCORDION) -->
     <article class="card">
       <div class="head">
         <div>
@@ -318,22 +294,6 @@
           </div>
 
           <button class="faq-q" type="button" aria-expanded="false">
-            Por que não pedem CPF?
-            <span class="faq-ico">+</span>
-          </button>
-          <div class="faq-a">
-            Para reduzir risco e atrito na primeira etapa. A análise completa pode exigir documentos depois, via atendimento.
-          </div>
-
-          <button class="faq-q" type="button" aria-expanded="false">
-            O dinheiro cai na hora?
-            <span class="faq-ico">+</span>
-          </button>
-          <div class="faq-a">
-            Depende de análise, aprovação e regras da instituição. Aqui você inicia a solicitação e recebe retorno pelo WhatsApp.
-          </div>
-
-          <button class="faq-q" type="button" aria-expanded="false">
             Existe taxa antecipada?
             <span class="faq-ico">+</span>
           </button>
@@ -342,11 +302,11 @@
           </div>
 
           <button class="faq-q" type="button" aria-expanded="false">
-            Posso pedir exclusão dos meus dados?
+            A simulação garante aprovação?
             <span class="faq-ico">+</span>
           </button>
           <div class="faq-a">
-            Sim. Consulte a <a href="./privacy.html">Política de Privacidade</a> para orientações de exclusão.
+            Não. É uma estimativa matemática. A aprovação depende de análise e regras da instituição.
           </div>
 
         </div>
@@ -367,7 +327,6 @@
 </main>
 
 
-<!-- Sticky CTA (mobile) -->
 <div class="sticky-cta" role="region" aria-label="Chamada para ação">
   <a class="btn primary" href="#cadastro">Solicitar análise no WhatsApp</a>
 </div>
