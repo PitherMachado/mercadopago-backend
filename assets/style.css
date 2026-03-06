@@ -301,3 +301,119 @@ input:focus{border-color: rgba(94,234,212,.55)}
   .testimonials{grid-template-columns: 1fr 1fr 1fr}
   .sticky-cta{display:none}
 }
+/* ===============================
+   HERO FULLSCREEN (NO "BURACO")
+   =============================== */
+
+:root{
+  --hero-max: 1480px; /* largura útil do conteúdo dentro do full width */
+}
+
+/* Container full width independente do wrap */
+.hero-full{
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  padding: 28px 18px 18px;
+  position: relative;
+}
+
+/* Background mais cinematográfico no hero */
+.hero-full::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(1200px 700px at 20% 10%, rgba(59,130,246,.22), transparent 55%),
+    radial-gradient(900px 700px at 85% 40%, rgba(236,72,153,.16), transparent 55%),
+    radial-gradient(1100px 900px at 55% 90%, rgba(94,234,212,.10), transparent 60%);
+  pointer-events:none;
+}
+
+/* Miolo do hero em largura grande (sem limitar em 1100) */
+.hero-shell{
+  position: relative;
+  max-width: var(--hero-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(520px, 1.15fr) minmax(420px, .85fr);
+  gap: 18px;
+  align-items: start;
+}
+
+/* Refinos no texto */
+.hero-shell .hero-left h2{
+  font-size: clamp(34px, 3.2vw, 54px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin-top: 12px;
+}
+.hero-shell .hero-left p{
+  font-size: 15px;
+  max-width: 72ch;
+}
+
+/* Chips mais premium */
+.chip{
+  border-color: rgba(255,255,255,.16);
+  background: rgba(255,255,255,.07);
+}
+
+/* Cards de confiança mais alinhados e densos */
+.trust{
+  margin-top: 16px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.trust-item{
+  padding: 14px;
+}
+
+/* Simulador: fixo “no lugar” e visual mais forte */
+.pro-card{
+  position: sticky;
+  top: 86px; /* abaixo do header */
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+  border-color: rgba(255,255,255,.16);
+}
+
+/* Botões do modo de simulação: mais “button-like” */
+#simModoValor, #simModoParcela{
+  padding: 12px 12px;
+  border-radius: 14px;
+  font-weight: 900;
+}
+
+/* Resultado do simulador mais legível */
+.sim-result{
+  border-radius: 16px;
+  background: rgba(0,0,0,.24);
+  border-color: rgba(255,255,255,.14);
+}
+
+/* Remove a sensação de “buraco” abaixo do hero: puxa o conteúdo */
+.hero-after{
+  margin-top: -10px;
+}
+
+/* Responsivo: empilha no mobile, mas continua “full” */
+@media (max-width: 980px){
+  .hero-shell{
+    grid-template-columns: 1fr;
+  }
+  .pro-card{
+    position: relative;
+    top: auto;
+  }
+  .trust{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Ajuste fino: no desktop, reduz padding do wrap abaixo para conectar visualmente */
+@media (min-width: 981px){
+  .wrap.hero-after{
+    padding-top: 8px;
+  }
+}
