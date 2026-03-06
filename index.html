@@ -36,10 +36,10 @@
 </header>
 
 
-<main class="wrap">
+<!-- HERO FULLSCREEN (FULL WIDTH, SEM BURACO) -->
+<section class="hero-full">
+  <div class="hero-shell hero-pro">
 
-  <!-- HERO -->
-  <section class="hero hero-pro">
     <div class="hero-left">
       <div class="hero-badges">
         <span class="chip">Sem CPF</span>
@@ -89,7 +89,8 @@
       </div>
     </div>
 
-    <!-- SIMULADOR PRO (DUAS MODALIDADES + MODO DUPLO) -->
+
+    <!-- SIMULADOR -->
     <div class="hero-right">
       <article class="card pro-card">
         <div class="head">
@@ -106,8 +107,8 @@
               <div class="field" style="flex:1 1 100%">
                 <label for="simModalidade">Modalidade</label>
                 <select id="simModalidade">
-                  <option value="consignado" selected>Crédito Consignado (INSS)</option>
-                  <option value="pessoal">Crédito Pessoal (INSS)</option>
+                  <option value="consignado">Crédito Consignado (INSS)</option>
+                  <option value="pessoal" selected>Crédito Pessoal (INSS)</option>
                 </select>
               </div>
             </div>
@@ -126,7 +127,7 @@
             <div class="row" id="simBoxValor">
               <div class="field" style="flex:1 1 100%">
                 <label for="simValor">Valor liberado (R$)</label>
-                <input id="simValor" inputmode="numeric" placeholder="Ex.: 8000" />
+                <input id="simValor" inputmode="numeric" placeholder="Ex.: 1500" />
               </div>
             </div>
 
@@ -158,10 +159,14 @@
         </div>
       </article>
     </div>
-  </section>
+
+  </div>
+</section>
 
 
-  <!-- GRID -->
+<!-- RESTANTE DO SITE -->
+<main class="wrap hero-after">
+
   <section class="grid" id="cadastro">
 
     <article class="card half">
