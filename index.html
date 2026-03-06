@@ -36,11 +36,13 @@
 </header>
 
 
-<!-- HERO FULLSCREEN (FULL WIDTH, SEM BURACO) -->
-<section class="hero-full">
+<!-- HERO FULLSCREEN (FORA DO .wrap) -->
+<section class="hero-full" aria-label="Apresentação e simulador">
   <div class="hero-shell hero-pro">
 
+    <!-- COLUNA ESQUERDA -->
     <div class="hero-left">
+
       <div class="hero-badges">
         <span class="chip">Sem CPF</span>
         <span class="chip">Sem taxa antecipada</span>
@@ -56,15 +58,17 @@
 
       <div class="hero-cta">
         <a class="btn primary" href="#cadastro">Quero solicitar análise agora</a>
+
         <div class="mini">
-          <span class="dot"></span>
+          <span class="dot" aria-hidden="true"></span>
           <span id="socialProof">Hoje: 0 solicitações iniciadas neste dispositivo</span>
         </div>
       </div>
 
       <div class="trust">
+
         <div class="trust-item">
-          <div class="trust-ico">✓</div>
+          <div class="trust-ico" aria-hidden="true">✓</div>
           <div>
             <div class="trust-t">Processo objetivo</div>
             <div class="trust-d">Cadastro em menos de 1 minuto</div>
@@ -72,7 +76,7 @@
         </div>
 
         <div class="trust-item">
-          <div class="trust-ico">🔒</div>
+          <div class="trust-ico" aria-hidden="true">🔒</div>
           <div>
             <div class="trust-t">Privacidade</div>
             <div class="trust-d">Tratamento conforme LGPD</div>
@@ -80,19 +84,22 @@
         </div>
 
         <div class="trust-item">
-          <div class="trust-ico">💬</div>
+          <div class="trust-ico" aria-hidden="true">💬</div>
           <div>
             <div class="trust-t">Atendimento WhatsApp</div>
             <div class="trust-d">Sem complicação</div>
           </div>
         </div>
+
       </div>
+
     </div>
 
 
-    <!-- SIMULADOR -->
+    <!-- COLUNA DIREITA (SIMULADOR) -->
     <div class="hero-right">
       <article class="card pro-card">
+
         <div class="head">
           <div>
             <h3>Simulador rápido</h3>
@@ -116,10 +123,17 @@
             <div class="row">
               <div class="field" style="flex:1 1 100%">
                 <label>Como você quer simular?</label>
+
                 <div class="row" style="gap:10px">
-                  <button class="btn" id="simModoValor" type="button" style="flex:1 1 200px">Pelo valor liberado</button>
-                  <button class="btn" id="simModoParcela" type="button" style="flex:1 1 200px">Pela parcela</button>
+                  <button class="btn" id="simModoValor" type="button" style="flex:1 1 200px">
+                    Pelo valor liberado
+                  </button>
+
+                  <button class="btn" id="simModoParcela" type="button" style="flex:1 1 200px">
+                    Pela parcela
+                  </button>
                 </div>
+
                 <div class="note" id="simHint" style="margin-top:8px;"></div>
               </div>
             </div>
@@ -157,6 +171,7 @@
 
           </div>
         </div>
+
       </article>
     </div>
 
@@ -164,11 +179,12 @@
 </section>
 
 
-<!-- RESTANTE DO SITE -->
-<main class="wrap hero-after">
+<!-- RESTANTE DO SITE (AGORA SIM DENTRO DO WRAP) -->
+<main class="wrap hero-after" id="cadastro">
 
-  <section class="grid" id="cadastro">
+  <section class="grid" aria-label="Cadastro e informações">
 
+    <!-- CARD ESQ -->
     <article class="card half">
       <div class="head">
         <div>
@@ -210,6 +226,7 @@
     </article>
 
 
+    <!-- FORM -->
     <article class="card half">
       <div class="head">
         <div>
@@ -279,6 +296,7 @@
     </article>
 
 
+    <!-- FAQ -->
     <article class="card">
       <div class="head">
         <div>
@@ -321,7 +339,7 @@
   </section>
 
 
-  <section class="footer">
+  <section class="footer" aria-label="Avisos legais">
     <b>Aviso:</b> Este site não possui vínculo com o INSS ou qualquer órgão público.
     Crédito sujeito à análise e aprovação. Não solicitamos pagamento antecipado para liberação.
     <div style="margin-top:8px;">
@@ -332,6 +350,7 @@
 </main>
 
 
+<!-- CTA MOBILE -->
 <div class="sticky-cta" role="region" aria-label="Chamada para ação">
   <a class="btn primary" href="#cadastro">Solicitar análise no WhatsApp</a>
 </div>
