@@ -5,644 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pither Machado</title>
   <meta name="description" content="Home pessoal de Pither Machado." />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --bg:#0d1326;
-      --bg2:#152142;
-      --bg3:#1d315d;
-      --bg4:#0f1730;
-
-      --card:rgba(9,14,28,.72);
-      --card-strong:rgba(8,12,24,.86);
-      --card-soft:rgba(18,28,54,.62);
-
-      --text:#f6f8fd;
-      --muted:#c9d2e7;
-      --muted2:#97a4c4;
-
-      --line:rgba(255,255,255,.11);
-      --line-soft:rgba(255,255,255,.07);
-
-      --gold:#e0bf63;
-      --gold2:#f0d88b;
-      --gold-soft:rgba(240,216,139,.18);
-      --blue-glow:rgba(102,153,255,.18);
-      --teal-glow:rgba(94,234,212,.10);
-
-      --max:1360px;
-      --hero-max:1460px;
-
-      --radius:22px;
-      --shadow:0 20px 60px rgba(0,0,0,.45);
-      --shadow-soft:0 14px 36px rgba(0,0,0,.28);
-    }
-
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-
-    body{
-      margin:0;
-      font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-      color:var(--text);
-      line-height:1.6;
-      overflow-x:hidden;
-      background:
-        radial-gradient(900px 600px at 8% 10%, rgba(240,216,139,.12), transparent 58%),
-        radial-gradient(700px 520px at 82% 18%, rgba(94,234,212,.08), transparent 56%),
-        radial-gradient(1000px 700px at 50% 35%, rgba(102,153,255,.10), transparent 62%),
-        linear-gradient(135deg, var(--bg) 0%, var(--bg2) 38%, var(--bg3) 68%, var(--bg4) 100%);
-      position:relative;
-    }
-
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      z-index:-4;
-      pointer-events:none;
-      opacity:.14;
-      mix-blend-mode:overlay;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.14'/%3E%3C/svg%3E");
-    }
-
-    body::after{
-      content:"";
-      position:fixed;
-      inset:-12%;
-      z-index:-3;
-      pointer-events:none;
-      background:
-        radial-gradient(320px 320px at 18% 30%, rgba(240,216,139,.12), transparent 60%),
-        radial-gradient(520px 520px at 82% 22%, rgba(255,255,255,.05), transparent 60%),
-        radial-gradient(360px 360px at 48% 78%, rgba(94,234,212,.07), transparent 62%);
-      mix-blend-mode:screen;
-      animation:ambientDrift 26s ease-in-out infinite alternate;
-      opacity:.95;
-    }
-
-    @keyframes ambientDrift{
-      0%{transform:translate3d(-2%,-1%,0) scale(1)}
-      25%{transform:translate3d(2%,2%,0) scale(1.04)}
-      50%{transform:translate3d(-1%,4%,0) scale(1.07)}
-      75%{transform:translate3d(3%,-2%,0) scale(1.03)}
-      100%{transform:translate3d(-3%,1%,0) scale(1.06)}
-    }
-
-    a{color:inherit;text-decoration:none}
-    img{display:block;max-width:100%}
-
-    .container{
-      width:min(calc(100% - 48px), var(--max));
-      margin:0 auto;
-    }
-
-    .hero-container{
-      width:min(calc(100% - 48px), var(--hero-max));
-      margin:0 auto;
-    }
-
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:30;
-      backdrop-filter:blur(16px);
-      background:linear-gradient(180deg, rgba(8,12,22,.82), rgba(8,12,22,.66));
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-
-    .topbar__inner{
-      min-height:78px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-    }
-
-    .brand{
-      font-weight:900;
-      letter-spacing:-0.03em;
-      font-size:1.06rem;
-    }
-
-    .nav{
-      display:flex;
-      align-items:center;
-      gap:28px;
-      flex-wrap:wrap;
-    }
-
-    .nav a{
-      color:var(--muted);
-      font-size:.97rem;
-      font-weight:600;
-      transition:.25s ease;
-      position:relative;
-    }
-
-    .nav a:hover{
-      color:var(--text);
-    }
-
-    .nav a::after{
-      content:"";
-      position:absolute;
-      left:0;
-      bottom:-8px;
-      width:100%;
-      height:1px;
-      background:linear-gradient(90deg, transparent, var(--gold2), transparent);
-      transform:scaleX(0);
-      transform-origin:center;
-      transition:.25s ease;
-      opacity:.8;
-    }
-
-    .nav a:hover::after{
-      transform:scaleX(1);
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      min-height:50px;
-      padding:0 22px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      color:var(--text);
-      font-weight:800;
-      font-size:.98rem;
-      box-shadow:var(--shadow-soft);
-      transition:.22s ease;
-      backdrop-filter:blur(10px);
-    }
-
-    .btn:hover{
-      transform:translateY(-1px);
-      border-color:rgba(240,216,139,.28);
-      box-shadow:0 16px 34px rgba(0,0,0,.28);
-    }
-
-    .btn--ghost{
-      background:rgba(255,255,255,.03);
-    }
-
-    .hero{
-      position:relative;
-      padding:72px 0 42px;
-      min-height:calc(100vh - 78px);
-      display:flex;
-      align-items:center;
-    }
-
-    .hero__grid{
-      display:grid;
-      grid-template-columns:minmax(0,1.1fr) minmax(360px,.9fr);
-      gap:44px;
-      align-items:center;
-    }
-
-    .hero-copy{
-      max-width:860px;
-      position:relative;
-      z-index:2;
-    }
-
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      min-height:42px;
-      padding:0 16px;
-      border-radius:999px;
-      border:1px solid rgba(240,216,139,.18);
-      background:rgba(240,216,139,.08);
-      color:var(--gold2);
-      font-size:.84rem;
-      font-weight:900;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      box-shadow:0 10px 28px rgba(0,0,0,.16);
-      margin-bottom:18px;
-    }
-
-    .hero h1{
-      margin:0;
-      font-size:clamp(3.4rem, 7vw, 6.35rem);
-      line-height:.94;
-      letter-spacing:-0.075em;
-      max-width:8.8ch;
-      text-wrap:balance;
-    }
-
-    .hero p{
-      margin:24px 0 0;
-      max-width:760px;
-      font-size:1.18rem;
-      color:var(--muted);
-    }
-
-    .hero__actions{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-      margin-top:30px;
-    }
-
-    .hero-card{
-      position:relative;
-      background:
-        linear-gradient(180deg, rgba(7,12,24,.82), rgba(8,13,26,.74)),
-        radial-gradient(900px 420px at 10% 0%, rgba(240,216,139,.10), transparent 62%),
-        radial-gradient(800px 460px at 85% 40%, rgba(94,234,212,.08), transparent 62%);
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:30px;
-      padding:22px;
-      box-shadow:0 24px 70px rgba(0,0,0,.34);
-      backdrop-filter:blur(14px);
-      overflow:hidden;
-      min-height:640px;
-      display:flex;
-      flex-direction:column;
-      justify-content:flex-end;
-    }
-
-    .hero-card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      border-radius:inherit;
-      pointer-events:none;
-      background:linear-gradient(180deg, rgba(255,255,255,.06), transparent 18%, transparent 80%, rgba(255,255,255,.03));
-      opacity:.7;
-    }
-
-    .hero-card__photo{
-      position:absolute;
-      inset:22px 22px auto 22px;
-      height:78%;
-      border-radius:24px;
-      background:
-        radial-gradient(520px 220px at 20% 0%, rgba(240,216,139,.12), transparent 65%),
-        radial-gradient(440px 240px at 85% 28%, rgba(94,234,212,.08), transparent 60%),
-        linear-gradient(135deg, rgba(14,20,38,.94), rgba(5,10,24,.95));
-      border:1px solid rgba(255,255,255,.08);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:var(--gold2);
-      font-weight:800;
-      font-size:1.02rem;
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
-    }
-
-    .hero-card__content{
-      position:relative;
-      z-index:2;
-      margin-top:auto;
-    }
-
-    .hero-card h3{
-      margin:0 0 10px;
-      font-size:1.9rem;
-      line-height:1;
-      letter-spacing:-0.04em;
-    }
-
-    .hero-card p{
-      margin:0;
-      font-size:1.05rem;
-      color:var(--muted);
-      max-width:32ch;
-    }
-
-    section{
-      padding:28px 0 16px;
-      position:relative;
-      z-index:2;
-    }
-
-    .section-title{
-      margin:0 0 16px;
-      font-size:2rem;
-      line-height:1.02;
-      letter-spacing:-0.05em;
-    }
-
-    .section-note{
-      margin:0 0 24px;
-      color:var(--muted);
-      font-size:1.03rem;
-      max-width:760px;
-    }
-
-    .authority{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:18px;
-      margin-top:12px;
-    }
-
-    .stat,
-    .card,
-    .portal{
-      position:relative;
-      overflow:hidden;
-      background:
-        linear-gradient(180deg, rgba(8,12,24,.76), rgba(9,14,27,.68));
-      border:1px solid rgba(255,255,255,.09);
-      box-shadow:var(--shadow-soft);
-      backdrop-filter:blur(14px);
-    }
-
-    .stat::before,
-    .card::before,
-    .portal::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(180deg, rgba(255,255,255,.04), transparent 18%, transparent 82%, rgba(255,255,255,.02));
-      pointer-events:none;
-    }
-
-    .stat{
-      border-radius:24px;
-      padding:24px;
-    }
-
-    .stat strong{
-      display:block;
-      font-size:1.9rem;
-      line-height:1;
-      letter-spacing:-0.05em;
-      color:var(--gold2);
-      margin-bottom:10px;
-    }
-
-    .stat span{
-      color:var(--muted);
-      font-size:.98rem;
-    }
-
-    .split{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:22px;
-      align-items:start;
-    }
-
-    .card{
-      border-radius:28px;
-      padding:30px;
-    }
-
-    .card h3{
-      margin:0 0 10px;
-      font-size:1.42rem;
-      line-height:1.05;
-      letter-spacing:-0.04em;
-    }
-
-    .card p{
-      margin:0 0 16px;
-      color:var(--muted);
-      font-size:1rem;
-    }
-
-    .list{
-      list-style:none;
-      padding:0;
-      margin:0;
-      display:grid;
-      gap:14px;
-    }
-
-    .list li{
-      padding:16px 0;
-      border-top:1px solid var(--line-soft);
-    }
-
-    .list li:first-child{
-      border-top:0;
-      padding-top:0;
-    }
-
-    .list a{display:block}
-
-    .list strong{
-      display:block;
-      margin-bottom:6px;
-      font-size:1.05rem;
-      letter-spacing:-0.02em;
-    }
-
-    .list span{
-      color:var(--muted);
-      font-size:.96rem;
-    }
-
-    .portal{
-      border-radius:32px;
-      padding:34px;
-    }
-
-    .portal__grid{
-      display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:28px;
-      align-items:center;
-    }
-
-    .portal__mock{
-      min-height:320px;
-      border-radius:24px;
-      padding:18px;
-      background:
-        radial-gradient(closest-side at 20% 10%, rgba(240,216,139,.18), transparent 58%),
-        radial-gradient(closest-side at 84% 32%, rgba(94,234,212,.09), transparent 58%),
-        linear-gradient(135deg, #0e1220, #1d2438 55%, #131722);
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.02), 0 18px 42px rgba(0,0,0,.28);
-      display:grid;
-      grid-template-rows:auto 1fr;
-      gap:16px;
-    }
-
-    .portal__top{
-      display:flex;
-      gap:8px;
-    }
-
-    .portal__dot{
-      width:10px;
-      height:10px;
-      border-radius:999px;
-      background:rgba(255,255,255,.56);
-    }
-
-    .portal__screen{
-      border-radius:18px;
-      padding:18px;
-      display:grid;
-      gap:12px;
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.07);
-      align-content:start;
-    }
-
-    .portal__line{
-      height:14px;
-      border-radius:999px;
-      background:rgba(255,255,255,.12);
-    }
-
-    .portal__line--lg{height:22px;width:72%}
-    .portal__line--md{width:88%}
-    .portal__line--sm{width:54%}
-
-    .about{
-      display:grid;
-      grid-template-columns:.95fr 1.05fr;
-      gap:22px;
-      align-items:start;
-    }
-
-    .quote{
-      margin:0;
-      font-size:1.42rem;
-      line-height:1.35;
-      letter-spacing:-0.04em;
-      color:var(--gold2);
-      max-width:20ch;
-    }
-
-    .cta-final{
-      text-align:center;
-      padding:56px 0 100px;
-    }
-
-    .cta-final h2{
-      margin:0 0 12px;
-      font-size:clamp(2.3rem, 4vw, 3.6rem);
-      line-height:.98;
-      letter-spacing:-0.06em;
-    }
-
-    .cta-final p{
-      margin:0 auto 26px;
-      max-width:760px;
-      color:var(--muted);
-      font-size:1.08rem;
-    }
-
-    .footer{
-      position:relative;
-      z-index:2;
-      border-top:1px solid rgba(255,255,255,.08);
-      padding:26px 0 38px;
-      color:var(--muted2);
-      font-size:.94rem;
-    }
-
-    #network-bg{
-      position:fixed;
-      inset:0;
-      z-index:-2;
-      pointer-events:none;
-      opacity:.88;
-      filter:saturate(1.08) contrast(1.08);
-    }
-
-    @media (max-width: 1180px){
-      .hero{
-        min-height:auto;
-      }
-
-      .hero__grid{
-        grid-template-columns:1fr;
-        gap:26px;
-      }
-
-      .hero h1{
-        max-width:10ch;
-      }
-
-      .hero-card{
-        min-height:560px;
-      }
-
-      .authority{
-        grid-template-columns:1fr 1fr;
-      }
-
-      .portal__grid,
-      .split,
-      .about{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width: 760px){
-      .container,
-      .hero-container{
-        width:min(calc(100% - 28px), var(--max));
-      }
-
-      .topbar__inner{
-        min-height:auto;
-        padding:12px 0;
-        align-items:flex-start;
-        flex-direction:column;
-      }
-
-      .nav{
-        gap:14px;
-      }
-
-      .hero{
-        padding:34px 0 16px;
-      }
-
-      .hero h1{
-        font-size:clamp(2.6rem, 13vw, 4.2rem);
-        max-width:100%;
-      }
-
-      .hero p{
-        font-size:1.04rem;
-      }
-
-      .hero-card{
-        min-height:480px;
-        padding:18px;
-      }
-
-      .hero-card__photo{
-        inset:18px 18px auto 18px;
-        height:72%;
-      }
-
-      .authority{
-        grid-template-columns:1fr;
-      }
-
-      .card,
-      .stat,
-      .portal{
-        padding:22px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
   <header class="topbar">
     <div class="container topbar__inner">
       <a href="#home" class="brand">Pither Machado</a>
+
       <nav class="nav" aria-label="Primária">
         <a href="#sobre">Sobre</a>
         <a href="#conteudos">Conteúdos</a>
@@ -657,10 +31,13 @@
       <div class="hero-container hero__grid">
         <div class="hero-copy">
           <span class="eyebrow">PÁGINA INICIAL • ESTRUTURA BASE</span>
+
           <h1>Ensino vendas, performance comercial e construção de operação com método.</h1>
+
           <p>
             Esta é a base inicial da sua Home em estilo editorial e minimalista, inspirada na lógica de páginas de autoridade: mensagem clara, conteúdo fácil de consumir e direcionamento direto para o seu portal principal.
           </p>
+
           <div class="hero__actions">
             <a class="btn" href="#portal">Acessar portal</a>
             <a class="btn btn--ghost" href="#conteudos">Ver conteúdos</a>
@@ -669,7 +46,9 @@
 
         <aside class="hero-card" aria-label="Bloco de apresentação">
           <div class="hero-card__photo">SUA FOTO AQUI</div>
+
           <div class="hero-card__content">
+            <span class="hero-card__label">Apresentação</span>
             <h3>Pither Machado</h3>
             <p>
               Especialista em vendas, treinamento comercial, call center e construção de estruturas práticas para aumentar conversão e performance.
@@ -685,19 +64,23 @@
         <p class="section-note">
           Aqui deixamos indicadores rápidos para transmitir credibilidade logo no início da Home. Depois vamos trocar cada item pelos seus dados reais.
         </p>
+
         <div class="authority">
           <div class="stat">
             <strong>10+</strong>
             <span>Anos de experiência em vendas e operação comercial</span>
           </div>
+
           <div class="stat">
             <strong>Call Center</strong>
             <span>Treinamento, liderança e rotina de performance</span>
           </div>
+
           <div class="stat">
             <strong>Portal</strong>
             <span>Estrutura digital pronta para ensino e acompanhamento</span>
           </div>
+
           <div class="stat">
             <strong>Método</strong>
             <span>Processos claros para vender com consistência</span>
@@ -713,6 +96,7 @@
           <p>
             A Home precisa organizar sua autoridade em categorias simples. Este bloco é ideal para conduzir o visitante para as áreas certas do seu ecossistema.
           </p>
+
           <ul class="list">
             <li>
               <a href="#portal">
@@ -720,12 +104,14 @@
                 <span>Acesso à estrutura principal já pronta dentro do seu site.</span>
               </a>
             </li>
+
             <li>
               <a href="#artigos">
                 <strong>Conteúdos e artigos</strong>
                 <span>Materiais para ensinar vendas, postura comercial e conversão.</span>
               </a>
             </li>
+
             <li>
               <a href="#sobre">
                 <strong>Posicionamento pessoal</strong>
@@ -740,15 +126,18 @@
           <p>
             A função desta página não é competir com o portal. Ela deve abrir a porta, apresentar sua autoridade e encaminhar para a ação certa.
           </p>
+
           <ul class="list">
             <li>
               <strong>1. Clareza</strong>
               <span>Em poucos segundos, o visitante entende quem é você e o que você ensina.</span>
             </li>
+
             <li>
               <strong>2. Confiança</strong>
               <span>Os blocos de prova, trajetória e consistência reforçam credibilidade.</span>
             </li>
+
             <li>
               <strong>3. Direcionamento</strong>
               <span>O CTA principal leva para o seu portal sem confusão visual.</span>
@@ -768,17 +157,20 @@
               <p class="section-note">
                 Este bloco foi desenhado para destacar o portal como produto principal do ecossistema. Depois vamos inserir o link definitivo, a descrição correta e o nome exato do ambiente.
               </p>
+
               <div class="hero__actions">
                 <a class="btn" href="#">Entrar no portal</a>
                 <a class="btn btn--ghost" href="#sobre">Conhecer mais</a>
               </div>
             </div>
+
             <div class="portal__mock" aria-hidden="true">
               <div class="portal__top">
                 <span class="portal__dot"></span>
                 <span class="portal__dot"></span>
                 <span class="portal__dot"></span>
               </div>
+
               <div class="portal__screen">
                 <div class="portal__line portal__line--lg"></div>
                 <div class="portal__line portal__line--md"></div>
@@ -811,12 +203,14 @@
                 <span>Como padronizar discurso, postura e execução.</span>
               </a>
             </li>
+
             <li>
               <a href="#">
                 <strong>Conversão no call center</strong>
                 <span>Melhorias simples que impactam fechamento e produtividade.</span>
               </a>
             </li>
+
             <li>
               <a href="#">
                 <strong>Venda com método</strong>
@@ -835,6 +229,7 @@
           <p>
             Este espaço será usado para sua apresentação institucional curta. A proposta é manter o texto objetivo, com cara de autoridade, sem excesso de informação. Depois ajustamos isso com sua história real, seu posicionamento e a forma exata como você quer ser percebido.
           </p>
+
           <p>
             A estrutura segue uma lógica editorial: apresentação, prova, conteúdo e direcionamento para produto principal.
           </p>
@@ -867,257 +262,6 @@
 
   <canvas id="network-bg"></canvas>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-
-  <script>
-    const canvas = document.getElementById('network-bg');
-    const ctx = canvas.getContext('2d');
-
-    let w, h, dpr;
-    let particles = [];
-    const PARTICLE_COUNT = 110;
-    const LINK_DISTANCE = 170;
-
-    const mouse = {
-      x: null,
-      y: null,
-      active: false,
-      rx: 0,
-      ry: 0
-    };
-
-    const lightOrb = {
-      x: 0,
-      y: 0,
-      tx: 0,
-      ty: 0,
-      radius: 240,
-      speed: 0.010,
-      resetTarget() {
-        this.tx = Math.random() * w;
-        this.ty = Math.random() * h;
-      }
-    };
-
-    function resize() {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = window.innerWidth;
-      h = window.innerHeight;
-
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      canvas.style.width = w + 'px';
-      canvas.style.height = h + 'px';
-
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-
-    window.addEventListener('resize', resize);
-
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-      mouse.active = true;
-    });
-
-    window.addEventListener('mouseleave', () => {
-      mouse.active = false;
-    });
-
-    resize();
-
-    class Particle {
-      constructor() {
-        this.reset(true);
-      }
-
-      reset(initial = false) {
-        this.baseX = Math.random() * w;
-        this.baseY = Math.random() * h;
-        this.x = this.baseX;
-        this.y = this.baseY;
-        this.vx = (Math.random() - 0.5) * 0.22;
-        this.vy = (Math.random() - 0.5) * 0.22;
-        this.z = Math.random() * 1 + 0.25;
-        this.phase = Math.random() * Math.PI * 2;
-
-        if (!initial) {
-          this.x = Math.random() * w;
-          this.y = Math.random() * h;
-        }
-      }
-
-      move(time) {
-        this.baseX += this.vx * this.z;
-        this.baseY += this.vy * this.z;
-
-        if (this.baseX < -30) this.baseX = w + 30;
-        if (this.baseX > w + 30) this.baseX = -30;
-        if (this.baseY < -30) this.baseY = h + 30;
-        if (this.baseY > h + 30) this.baseY = -30;
-
-        const floatX = Math.cos(time * 0.00045 + this.phase) * 3.2 * this.z;
-        const floatY = Math.sin(time * 0.00055 + this.phase) * 3.2 * this.z;
-
-        let parallaxX = 0;
-        let parallaxY = 0;
-
-        if (mouse.active) {
-          const mx = (mouse.x / w - 0.5);
-          const my = (mouse.y / h - 0.5);
-          parallaxX = -mx * 24 * this.z;
-          parallaxY = -my * 24 * this.z;
-        }
-
-        this.x = this.baseX + floatX + parallaxX;
-        this.y = this.baseY + floatY + parallaxY;
-      }
-
-      draw() {
-        const size = 1 + this.z * 1.8;
-
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(240,216,139,${0.34 + this.z * 0.34})`;
-        ctx.shadowBlur = 8 + this.z * 10;
-        ctx.shadowColor = 'rgba(240,216,139,.24)';
-        ctx.fill();
-        ctx.shadowBlur = 0;
-      }
-    }
-
-    function createParticles() {
-      particles = [];
-      for (let i = 0; i < PARTICLE_COUNT; i++) {
-        particles.push(new Particle());
-      }
-    }
-
-    createParticles();
-
-    lightOrb.x = w * 0.34;
-    lightOrb.y = h * 0.28;
-    lightOrb.resetTarget();
-
-    function drawDepthGlow() {
-      const g1 = ctx.createRadialGradient(w * 0.16, h * 0.16, 0, w * 0.16, h * 0.16, 340);
-      g1.addColorStop(0, 'rgba(240,216,139,.07)');
-      g1.addColorStop(1, 'rgba(240,216,139,0)');
-
-      const g2 = ctx.createRadialGradient(w * 0.82, h * 0.74, 0, w * 0.82, h * 0.74, 380);
-      g2.addColorStop(0, 'rgba(94,234,212,.045)');
-      g2.addColorStop(1, 'rgba(94,234,212,0)');
-
-      const g3 = ctx.createRadialGradient(w * 0.52, h * 0.36, 0, w * 0.52, h * 0.36, 520);
-      g3.addColorStop(0, 'rgba(255,255,255,.035)');
-      g3.addColorStop(1, 'rgba(255,255,255,0)');
-
-      ctx.fillStyle = g1;
-      ctx.fillRect(0,0,w,h);
-
-      ctx.fillStyle = g2;
-      ctx.fillRect(0,0,w,h);
-
-      ctx.fillStyle = g3;
-      ctx.fillRect(0,0,w,h);
-    }
-
-    function drawTravelingLight() {
-      const dx = lightOrb.tx - lightOrb.x;
-      const dy = lightOrb.ty - lightOrb.y;
-      const dist = Math.hypot(dx, dy);
-
-      if (dist < 24) {
-        lightOrb.resetTarget();
-      }
-
-      lightOrb.x += dx * lightOrb.speed;
-      lightOrb.y += dy * lightOrb.speed;
-
-      let px = lightOrb.x;
-      let py = lightOrb.y;
-
-      if (mouse.active) {
-        px += (mouse.x - w / 2) * 0.018;
-        py += (mouse.y - h / 2) * 0.018;
-      }
-
-      const gradient = ctx.createRadialGradient(px, py, 0, px, py, lightOrb.radius);
-      gradient.addColorStop(0, 'rgba(255,255,255,.11)');
-      gradient.addColorStop(0.16, 'rgba(240,216,139,.13)');
-      gradient.addColorStop(0.42, 'rgba(94,234,212,.06)');
-      gradient.addColorStop(1, 'rgba(255,255,255,0)');
-
-      ctx.beginPath();
-      ctx.fillStyle = gradient;
-      ctx.arc(px, py, lightOrb.radius, 0, Math.PI * 2);
-      ctx.fill();
-
-      return { x: px, y: py };
-    }
-
-    function connectParticles(lightPos) {
-      for (let a = 0; a < particles.length; a++) {
-        for (let b = a + 1; b < particles.length; b++) {
-          const pa = particles[a];
-          const pb = particles[b];
-
-          const dx = pa.x - pb.x;
-          const dy = pa.y - pb.y;
-          const dist = Math.hypot(dx, dy);
-
-          if (dist < LINK_DISTANCE) {
-            const midX = (pa.x + pb.x) / 2;
-            const midY = (pa.y + pb.y) / 2;
-
-            const lightDist = Math.hypot(midX - lightPos.x, midY - lightPos.y);
-
-            let alpha = (1 - dist / LINK_DISTANCE) * 0.22;
-
-            if (lightDist < lightOrb.radius) {
-              alpha += (1 - lightDist / lightOrb.radius) * 0.22;
-            }
-
-            if (mouse.active) {
-              const mouseDist = Math.hypot(midX - mouse.x, midY - mouse.y);
-              if (mouseDist < 180) {
-                alpha += (1 - mouseDist / 180) * 0.14;
-              }
-            }
-
-            ctx.beginPath();
-            ctx.moveTo(pa.x, pa.y);
-            ctx.lineTo(pb.x, pb.y);
-            ctx.strokeStyle = `rgba(240,216,139,${Math.min(alpha, 0.48)})`;
-            ctx.lineWidth = 0.55 + ((pa.z + pb.z) / 2) * 0.65;
-            ctx.shadowBlur = 8;
-            ctx.shadowColor = 'rgba(240,216,139,.12)';
-            ctx.stroke();
-            ctx.shadowBlur = 0;
-          }
-        }
-      }
-    }
-
-    function animate(time = 0) {
-      ctx.clearRect(0, 0, w, h);
-
-      drawDepthGlow();
-
-      for (const p of particles) {
-        p.move(time);
-        p.draw();
-      }
-
-      const lightPos = drawTravelingLight();
-      connectParticles(lightPos);
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-  </script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
