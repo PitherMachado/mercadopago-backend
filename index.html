@@ -31,6 +31,7 @@
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
+
     body{
       margin:0;
       color:var(--text);
@@ -42,6 +43,7 @@
         radial-gradient(900px 600px at 85% 25%, rgba(94,234,212,.10), transparent 55%),
         linear-gradient(180deg, var(--bg2), var(--bg) 60%, var(--bg3));
       overflow-x:hidden;
+      position:relative;
     }
 
     body::before{
@@ -49,10 +51,33 @@
       position:fixed;
       inset:0;
       pointer-events:none;
-      z-index:-2;
+      z-index:-3;
       background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.10'/%3E%3C/svg%3E");
       opacity:.18;
       mix-blend-mode:overlay;
+    }
+
+    body::after{
+      content:"";
+      position:fixed;
+      inset:-20%;
+      z-index:-2;
+      pointer-events:none;
+      background:
+        radial-gradient(340px 340px at 20% 30%, rgba(243,214,127,.16), transparent 60%),
+        radial-gradient(420px 420px at 80% 20%, rgba(94,234,212,.10), transparent 62%),
+        radial-gradient(300px 300px at 50% 80%, rgba(255,255,255,.08), transparent 58%);
+      mix-blend-mode:screen;
+      opacity:.9;
+      animation:ambientDrift 24s ease-in-out infinite alternate;
+    }
+
+    @keyframes ambientDrift{
+      0%{ transform:translate3d(-2%, -1%, 0) scale(1); }
+      25%{ transform:translate3d(3%, 2%, 0) scale(1.04); }
+      50%{ transform:translate3d(-1%, 4%, 0) scale(1.08); }
+      75%{ transform:translate3d(4%, -2%, 0) scale(1.03); }
+      100%{ transform:translate3d(-3%, 1%, 0) scale(1.06); }
     }
 
     a{color:inherit;text-decoration:none}
@@ -118,7 +143,10 @@
       box-shadow:var(--shadow-soft);
     }
 
-    .btn:hover{transform:translateY(-1px);filter:brightness(1.04)}
+    .btn:hover{
+      transform:translateY(-1px);
+      filter:brightness(1.04);
+    }
 
     .btn--ghost{
       background:rgba(255,255,255,.03);
@@ -211,6 +239,8 @@
 
     section{
       padding:24px 0 12px;
+      position:relative;
+      z-index:2;
     }
 
     .section-title{
@@ -296,7 +326,10 @@
       border-top:1px solid rgba(255,255,255,.08);
     }
 
-    .list li:first-child{border-top:0;padding-top:0}
+    .list li:first-child{
+      border-top:0;
+      padding-top:0;
+    }
 
     .list a{
       display:block;
@@ -351,7 +384,10 @@
     }
 
     .portal__dot{
-      width:10px;height:10px;border-radius:999px;background:rgba(255,255,255,.55)
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.55);
     }
 
     .portal__screen{
@@ -409,10 +445,21 @@
     }
 
     .footer{
+      position:relative;
+      z-index:2;
       border-top:1px solid rgba(255,255,255,.10);
       padding:26px 0 38px;
       color:var(--muted2);
       font-size:.94rem;
+    }
+
+    #network-bg{
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      opacity:.82;
+      pointer-events:none;
+      filter:saturate(1.08) contrast(1.06);
     }
 
     @media (max-width: 980px){
@@ -440,7 +487,6 @@
       }
 
       .nav{gap:14px}
-
       .hero{padding:40px 0 20px}
 
       .hero__grid,
@@ -458,16 +504,9 @@
       .card,
       .portal,
       .hero-card,
-      .stat{padding:20px}
-    }
-  
-    /* 3D NETWORK BACKGROUND */
-    #network-bg{
-      position:fixed;
-      inset:0;
-      z-index:-1;
-      opacity:.45;
-      pointer-events:none;
+      .stat{
+        padding:20px;
+      }
     }
   </style>
 </head>
@@ -695,87 +734,193 @@
     </div>
   </footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
   <canvas id="network-bg"></canvas>
 
   <script>
-  const canvas=document.getElementById('network-bg');
-  const ctx=canvas.getContext('2d');
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 
-  let w,h,particles=[];
-  const PARTICLE_COUNT=90;
+  <script>
+    const canvas = document.getElementById('network-bg');
+    const ctx = canvas.getContext('2d');
 
-  function resize(){
-    w=canvas.width=window.innerWidth;
-    h=canvas.height=window.innerHeight;
-  }
+    let w, h, dpr;
+    let particles = [];
+    const PARTICLE_COUNT = 120;
+    const LINK_DISTANCE = 165;
 
-  window.addEventListener('resize',resize);
-  resize();
+    const lightOrb = {
+      x: 0,
+      y: 0,
+      tx: 0,
+      ty: 0,
+      radius: 220,
+      speed: 0.012,
+      resetTarget() {
+        this.tx = Math.random() * w;
+        this.ty = Math.random() * h;
+      }
+    };
 
-  class Particle{
-    constructor(){
-      this.x=Math.random()*w;
-      this.y=Math.random()*h;
-      this.vx=(Math.random()-.5)*0.4;
-      this.vy=(Math.random()-.5)*0.4;
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = window.innerWidth;
+      h = window.innerHeight;
+
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
-    move(){
-      this.x+=this.vx;
-      this.y+=this.vy;
+    window.addEventListener('resize', resize);
+    resize();
 
-      if(this.x<0||this.x>w) this.vx*=-1;
-      if(this.y<0||this.y>h) this.vy*=-1;
+    class Particle {
+      constructor() {
+        this.reset();
+        this.z = Math.random() * 1 + 0.2;
+      }
+
+      reset() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        this.vx = (Math.random() - 0.5) * 0.28;
+        this.vy = (Math.random() - 0.5) * 0.28;
+      }
+
+      move() {
+        this.x += this.vx * this.z;
+        this.y += this.vy * this.z;
+
+        if (this.x < -20) this.x = w + 20;
+        if (this.x > w + 20) this.x = -20;
+        if (this.y < -20) this.y = h + 20;
+        if (this.y > h + 20) this.y = -20;
+      }
+
+      draw() {
+        const size = 1.2 + this.z * 1.8;
+
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(243,214,127,${0.40 + this.z * 0.45})`;
+        ctx.shadowBlur = 10 + this.z * 10;
+        ctx.shadowColor = 'rgba(243,214,127,.35)';
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
     }
 
-    draw(){
+    function createParticles() {
+      particles = [];
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    createParticles();
+    lightOrb.x = w * 0.35;
+    lightOrb.y = h * 0.3;
+    lightOrb.resetTarget();
+
+    function drawTravelingLight() {
+      const dx = lightOrb.tx - lightOrb.x;
+      const dy = lightOrb.ty - lightOrb.y;
+      const dist = Math.hypot(dx, dy);
+
+      if (dist < 20) {
+        lightOrb.resetTarget();
+      }
+
+      lightOrb.x += dx * lightOrb.speed;
+      lightOrb.y += dy * lightOrb.speed;
+
+      const gradient = ctx.createRadialGradient(
+        lightOrb.x, lightOrb.y, 0,
+        lightOrb.x, lightOrb.y, lightOrb.radius
+      );
+
+      gradient.addColorStop(0, 'rgba(255,255,255,.11)');
+      gradient.addColorStop(0.18, 'rgba(243,214,127,.12)');
+      gradient.addColorStop(0.45, 'rgba(94,234,212,.07)');
+      gradient.addColorStop(1, 'rgba(255,255,255,0)');
+
       ctx.beginPath();
-      ctx.arc(this.x,this.y,1.6,0,Math.PI*2);
-      ctx.fillStyle='rgba(230,195,92,.8)';
+      ctx.fillStyle = gradient;
+      ctx.arc(lightOrb.x, lightOrb.y, lightOrb.radius, 0, Math.PI * 2);
       ctx.fill();
     }
-  }
 
-  for(let i=0;i<PARTICLE_COUNT;i++){
-    particles.push(new Particle());
-  }
+    function connectParticles() {
+      for (let a = 0; a < particles.length; a++) {
+        for (let b = a + 1; b < particles.length; b++) {
+          const pa = particles[a];
+          const pb = particles[b];
 
-  function connect(){
-    for(let a=0;a<particles.length;a++){
-      for(let b=a;b<particles.length;b++){
-        let dx=particles[a].x-particles[b].x;
-        let dy=particles[a].y-particles[b].y;
-        let dist=Math.sqrt(dx*dx+dy*dy);
+          const dx = pa.x - pb.x;
+          const dy = pa.y - pb.y;
+          const dist = Math.hypot(dx, dy);
 
-        if(dist<120){
-          ctx.beginPath();
-          ctx.moveTo(particles[a].x,particles[a].y);
-          ctx.lineTo(particles[b].x,particles[b].y);
-          ctx.strokeStyle='rgba(230,195,92,'+(1-dist/120)*0.25+')';
-          ctx.lineWidth=.6;
-          ctx.stroke();
+          if (dist < LINK_DISTANCE) {
+            const midX = (pa.x + pb.x) / 2;
+            const midY = (pa.y + pb.y) / 2;
+            const lightDist = Math.hypot(midX - lightOrb.x, midY - lightOrb.y);
+
+            let alpha = (1 - dist / LINK_DISTANCE) * 0.34;
+            if (lightDist < lightOrb.radius) {
+              alpha += (1 - lightDist / lightOrb.radius) * 0.26;
+            }
+
+            ctx.beginPath();
+            ctx.moveTo(pa.x, pa.y);
+            ctx.lineTo(pb.x, pb.y);
+            ctx.strokeStyle = `rgba(243,214,127,${Math.min(alpha, 0.62)})`;
+            ctx.lineWidth = 0.7 + ((pa.z + pb.z) / 2) * 0.8;
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = 'rgba(243,214,127,.18)';
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+          }
         }
       }
     }
-  }
 
-  function animate(){
-    ctx.clearRect(0,0,w,h);
+    function drawDepthGlow() {
+      const g1 = ctx.createRadialGradient(w * 0.22, h * 0.18, 0, w * 0.22, h * 0.18, 280);
+      g1.addColorStop(0, 'rgba(243,214,127,.07)');
+      g1.addColorStop(1, 'rgba(243,214,127,0)');
 
-    particles.forEach(p=>{
-      p.move();
-      p.draw();
-    });
+      const g2 = ctx.createRadialGradient(w * 0.82, h * 0.75, 0, w * 0.82, h * 0.75, 320);
+      g2.addColorStop(0, 'rgba(94,234,212,.05)');
+      g2.addColorStop(1, 'rgba(94,234,212,0)');
 
-    connect();
+      ctx.fillStyle = g1;
+      ctx.fillRect(0, 0, w, h);
 
-    requestAnimationFrame(animate);
-  }
+      ctx.fillStyle = g2;
+      ctx.fillRect(0, 0, w, h);
+    }
 
-  animate();
+    function animate() {
+      ctx.clearRect(0, 0, w, h);
+
+      drawDepthGlow();
+
+      for (const p of particles) {
+        p.move();
+        p.draw();
+      }
+
+      connectParticles();
+      drawTravelingLight();
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
   </script>
 </body>
 </html>
