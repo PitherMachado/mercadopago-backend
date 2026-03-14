@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Dashboard de Portais | Pither Machado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body class="dashboard-page">
+
+<canvas id="network-bg"></canvas>
+
+<header class="topbar">
+  <div class="container nav">
+    <a class="logo-link" href="../index.html">Pither Machado</a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="https://pithermachado.com/portal" target="_blank" rel="noopener noreferrer">Portal N1</a>
+    </nav>
+  </div>
+</header>
+
+<main class="dashboard-main container">
+  <section class="dashboard-hero card">
+    <div class="dashboard-copy">
+      <span class="tag">Portal Central</span>
+      <h1>Seu catálogo de portais.<br>Uma base única para escalar.</h1>
+      <p>
+        Um dashboard no mesmo padrão visual da home, pensado para reunir o Portal N1 e os próximos ambientes que vamos criar.
+        Estrutura clara, navegação rápida e visual forte estilo streaming premium.
+      </p>
+
+      <div class="dashboard-actions">
+        <a class="btn primary" href="#catalogo">Explorar catálogos</a>
+        <a class="btn ghost" href="../index.html">Voltar para Home</a>
+      </div>
+    </div>
+
+    <a href="https://pithermachado.com/portal" class="portal-card-poster" target="_blank" rel="noopener noreferrer" aria-label="Acessar Portal N1">
+      <img src="../assets/img/portal-n1.jpg" alt="Portal N1">
+      <div class="portal-card-overlay">
+        <h3>Portal N1</h3>
+      </div>
+    </a>
+  </section>
+
+  <section class="catalog-section" id="catalogo">
+    <div class="portal-grid">
+      <a href="https://pithermachado.com/portal" class="portal-card-poster" target="_blank" rel="noopener noreferrer">
+        <img src="../assets/img/portal-n1.jpg" alt="Portal N1">
+        <div class="portal-card-overlay">
+          <h3>Portal N1</h3>
+        </div>
+      </a>
+
+      <a href="#" class="portal-card-poster" aria-label="Próximo portal">
+        <img src="../assets/img/portal-n1.jpg" alt="Próximo portal">
+        <div class="portal-card-overlay">
+          <h3>Próximo Portal</h3>
+        </div>
+      </a>
+
+      <a href="#" class="portal-card-poster" aria-label="Novo projeto">
+        <img src="../assets/img/portal-n1.jpg" alt="Novo projeto">
+        <div class="portal-card-overlay">
+          <h3>Novo Projeto</h3>
+        </div>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>© <span id="year"></span> Pither Machado</p>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
