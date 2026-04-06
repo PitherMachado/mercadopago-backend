@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>DINÂMICAS DA MACIÇA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/black.css">
+
+  <style>
+    h1, h2, h3 {
+      color: #00ffcc;
+    }
+    .highlight {
+      color: #ffcc00;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- CAPA -->
+<section>
+  <h1>🔥 DIA M (MACIÇA)</h1>
+  <h3>Treinamento Comportamental de Alta Performance</h3>
+</section>
+
+<!-- INTRODUÇÃO -->
+<section>
+  <h2>INTRODUÇÃO</h2>
+  <p>“Quem quer 10 reais?”</p>
+  <p class="fragment">Muitos querem...</p>
+  <p class="fragment highlight">Poucos levantam para buscar.</p>
+</section>
+
+<section>
+  <h2>QUEBRA DE PADRÃO</h2>
+  <p>Não é sobre querer.</p>
+  <p class="highlight">É sobre agir.</p>
+</section>
+
+<section>
+  <h2>APRENDIZADO</h2>
+  <p>✔ Zona de conforto limita resultado</p>
+  <p>✔ Ação gera conquista</p>
+  <p class="highlight">✔ Quem levanta primeiro, ganha primeiro</p>
+</section>
+
+<!-- DINAMICA 1 -->
+<section>
+  <h2>1. CÍRCULO DE MÃOS DADAS</h2>
+  <p>Reconstrução da formação inicial</p>
+</section>
+
+<section>
+  <h3>O QUE DESENVOLVE</h3>
+  <p>✔ Memória</p>
+  <p>✔ Organização</p>
+  <p>✔ Estratégia</p>
+  <p>✔ Trabalho em equipe</p>
+</section>
+
+<section>
+  <h3>REFLEXO NA OPERAÇÃO</h3>
+  <p class="highlight">Equipe organizada resolve problema mais rápido</p>
+</section>
+
+<!-- DINAMICA 2 -->
+<section>
+  <h2>2. CANETA AMARRADA</h2>
+  <p>Coordenação coletiva para atingir um objetivo</p>
+</section>
+
+<section>
+  <h3>O QUE DESENVOLVE</h3>
+  <p>✔ Atenção</p>
+  <p>✔ Comunicação</p>
+  <p>✔ Controle emocional</p>
+  <p>✔ Estratégia</p>
+</section>
+
+<section>
+  <h3>REFLEXO NA OPERAÇÃO</h3>
+  <p class="highlight">Sem alinhamento, o resultado não entra</p>
+</section>
+
+<!-- DINAMICA 3 -->
+<section>
+  <h2>3. BAMBOLÊ</h2>
+  <p>Superar obstáculos com estratégia</p>
+</section>
+
+<section>
+  <h3>O QUE DESENVOLVE</h3>
+  <p>✔ Agilidade</p>
+  <p>✔ Planejamento</p>
+  <p>✔ Adaptação</p>
+</section>
+
+<section>
+  <h3>REFLEXO NA OPERAÇÃO</h3>
+  <p class="highlight">Quem se adapta mais rápido, performa mais</p>
+</section>
+
+<!-- DINAMICA 4 -->
+<section>
+  <h2>4. GOL DE CAIXA</h2>
+  <p>Competição direta por resultado</p>
+</section>
+
+<section>
+  <h3>O QUE DESENVOLVE</h3>
+  <p>✔ Competitividade</p>
+  <p>✔ Execução</p>
+  <p>✔ Foco em resultado</p>
+</section>
+
+<section>
+  <h3>REFLEXO NA OPERAÇÃO</h3>
+  <p class="highlight">Meta não é tentativa, é resultado</p>
+</section>
+
+<!-- DINAMICA 5 -->
+<section>
+  <h2>5. APITO INCOMUM</h2>
+  <p>Reconhecimento de padrões</p>
+</section>
+
+<section>
+  <h3>O QUE DESENVOLVE</h3>
+  <p>✔ Foco</p>
+  <p>✔ Escuta ativa</p>
+  <p>✔ Observação</p>
+</section>
+
+<section>
+  <h3>REFLEXO NA OPERAÇÃO</h3>
+  <p class="highlight">Quem escuta melhor, vende mais</p>
+</section>
+
+<!-- FECHAMENTO -->
+<section>
+  <h2>🔥 FECHAMENTO</h2>
+  <p>Não é sobre saber.</p>
+  <p class="highlight">É sobre executar.</p>
+</section>
+
+<section>
+  <h1>RESULTADO = AÇÃO</h1>
+</section>
+
+</div>
+</div>
+
+<script src="https://unpkg.com/reveal.js/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    transition: 'slide'
+  });
+</script>
+
+</body>
+</html>
